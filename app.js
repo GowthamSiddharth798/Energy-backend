@@ -18,8 +18,10 @@ mongoose
     "mongodb+srv://gowtham:MkoguuNBZQ3SHDjP@cluster0.yggqton.mongodb.net/?retryWrites=true&w=majority")
 
   .then((result) => {
+    
     console.log("app is running...");
     app.listen(port)
+    
   }).catch((err) => {
     console.log(err);
   });
