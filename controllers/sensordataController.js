@@ -5,7 +5,7 @@ const sensordataHandler = async (req, res, next) => {
   
   const {current,power,energy ,IRcurrent,IYcurrent,IBcurrent,VRvoltage,VYvoltage,
     VBvoltage,IRLcurrent,IYLcurrent,IBLcurrent,VRLvoltage,VYLvoltage,
-    VBLvoltage ,R_power,Y_power,B_power,Active_power,Reactive_power,Power_factor,Energy_Meter} = req.body;
+    VBLvoltage ,R_power,Y_power,B_power,Active_power,Reactive_power,Power_factor,Energy_Meter ,Voltage} = req.body;
 
 
   
@@ -31,6 +31,7 @@ const sensordataHandler = async (req, res, next) => {
       {
         current: current,
         power: power,
+        Voltage:Voltage,
         R_power: R_power,
         Y_power: Y_power,
         B_power: B_power,
@@ -59,6 +60,7 @@ const sensordataHandler = async (req, res, next) => {
       const newSensorData = new SensorData({
         current: current,
         power: power,
+        Voltage:Voltage,
         Active_power:Active_power,
         Reactive_power:Reactive_power,
         R_power: R_power,
@@ -79,7 +81,6 @@ const sensordataHandler = async (req, res, next) => {
         VRLvoltage:VRLvoltage,
         VYLvoltage:VYLvoltage,
         VBLvoltage:VBLvoltage,
-
 
       });
       await newSensorData.save();
@@ -137,8 +138,8 @@ const getdataHandler = async (req, res, next) => {
     VBvoltage:sensordata[0].VBvoltage,
     VRLvoltage:sensordata[0].VRLvoltage,
     VYLvoltage:sensordata[0].VYLvoltage,
-    VBLvoltage:sensordata[0].VBLvoltage
-    
+    VBLvoltage:sensordata[0].VBLvoltage,
+    Voltage:sensordata[0].Voltage,
   }
   
   return res.status(200).json(data);
